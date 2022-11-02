@@ -11,22 +11,24 @@ saldo, valor : REAL
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc... 
 saldo<-0
-escreva("Digite a operação desejada:")
-escreval
+escreval("Digite a operação desejada:")
 escreval("1. Depósito")
 escreval("2. Saque")
 leia(operacao)
+escreval("Saldo inicial (R$):", saldo)
 se (operacao=1) entao
-   escreval("Digite o valor do depósito (R$):")
+   escreval("Operação: Depósito")
+   escreva("Digite o valor do depósito (R$): ")
    leia(valor)
    saldo<-saldo+valor
    senao
         se (operacao=2) entao
-        escreval("Digite o valor do saque (R$):")
+        escreval("Operação: Saque")
+        escreva("Digite o valor do saque (R$): ")
         leia(valor)
         saldo<-saldo-valor
         senao
-             escreval("Operação Inválida!")
+             escreva("Operação Inválida!")
         fimse
 fimse
 escreval("Saldo (R$):", saldo)
