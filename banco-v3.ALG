@@ -6,23 +6,22 @@ Algoritmo "Operações Bancárias"
 // Data atual  : 02/11/2022
 Var
 // Seção de Declarações das variáveis 
-operacao, banco : CARACTERE
+operacao, banco, aceite : CARACTERE
 saldoinicial, saldo, valor, agencia, conta : REAL
-j, quantidade : INTEIRO
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc...
-escreva ("Quantas operações deseja realizar? ")
-leia(quantidade)
 saldoinicial <- 0
-para j de 1 ate quantidade faca
+aceite <- "S"
+enquanto (aceite = "S") faca
      saldoinicial <- saldo
      escreval ("Informe a operação desejada:")
      escreval ("D - Depósito")
      escreval ("S - Saque")
      escreval ("T - Transferência")
+     escreval ("E - Empréstimo")
      leia (operacao)
-     //operacao <- minusc (operacao)
      operacao <- maiusc (operacao)
+     //Falta trava para impedir códigos de operações inválidas
      escolha operacao
              caso "D"
                   escreva ("Digite o valor a depositar R$: ")
@@ -36,7 +35,6 @@ para j de 1 ate quantidade faca
                   saldo <- saldo - valor
                   escreval ("Operação: Saque")
                   operacao <- "Saque (R$):"
-
              caso "T"
                   escreva ("Digite o valor a transferir R$: ")
                   leia (valor)
@@ -52,9 +50,41 @@ para j de 1 ate quantidade faca
                   escreval ("Agência:", agencia)
                   escreval ("Conta:", conta)
                   operacao <- "Transferência (R$):"
+             caso "E"
+                  escreval ("Sobre a operação de Empréstimo há a incidência de juros.")
+                  escreva ("Deseja prosseguir: (S) - Sim / (N) - Não: ")
+                  leia (aceite)
+                  aceite <- maiusc (aceite)
+                  enquanto (aceite <> "S") e (aceite <> "N") faca
+                           escreval ("Opção inválida")
+                           escreval ("Sobre a operação de Empréstimo há a incidência de juros.")
+                           escreva ("Deseja prosseguir: (S) - Sim / (N) - Não: ")
+                           leia (aceite)
+                           aceite <- maiusc (aceite)
+                  fimenquanto
+                  se (aceite = "S") entao
+                     escreva ("Digite o valor de empréstimo desejado (R$): ")
+                     leia (valor)
+                     saldo <- saldoinicial + valor
+                     operacao <- "Empréstimo (R$):"
+                  fimse
+             outrocaso
+                      escreval ("Opção Inválida!")
+                      escreval ("Escolha uma opção válida.")
      fimescolha
      escreval ("Saldo Inicial (R$):", saldoinicial)
      escreval (operacao, valor)
      escreval ("Saldo Atual (R$):", saldo)
-fimpara
+     escreval ("Deseja realizar uma nova operação?")
+     escreva ("(S) - Sim / (N) - Não: ")
+     leia (aceite)
+     aceite <- maiusc (aceite)
+     enquanto (aceite <> "S") e (aceite <> "N") faca
+              escreval ("Opção inválida")
+              escreval ("Deseja realizar uma nova operação?")
+              escreva ("(S) - Sim / (N) - Não: ")
+              leia (aceite)
+              aceite <- maiusc (aceite)
+     fimenquanto
+fimenquanto
 Fimalgoritmo
